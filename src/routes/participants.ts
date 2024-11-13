@@ -19,7 +19,7 @@ participants.post(
     validator("json", (value, _c) => {
         const parsed = participantSchema.safeParse(value);
         if (!parsed.success) {
-            throw new HTTPException(401, { message: parsed.error.message });
+            throw new HTTPException(400, { message: parsed.error.message });
         }
         return parsed.data;
     }),
