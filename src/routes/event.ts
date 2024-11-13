@@ -7,7 +7,7 @@ import { HTTPException } from "hono/http-exception";
 export const event = new Hono();
 
 event.get("/", async (c) => {
-    const eventDate = await getEventDate();
+    const eventDate = (await getEventDate()).value;
     return c.json({ eventDate });
 });
 
