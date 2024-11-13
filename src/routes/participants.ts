@@ -5,9 +5,6 @@ import {
     createParticipant,
     getParticipants,
 } from "../models/participants.ts";
-import { participantSchema } from "../schemas/participants.ts";
-import { HTTPException } from "jsr:@hono/hono@^4.6.9/http-exception";
-
 export const participants = new Hono();
 
 participants.get("/", async (c) => {
@@ -17,11 +14,7 @@ participants.get("/", async (c) => {
 participants.post(
     "/",
     validator("json", (value, _c) => {
-        const parsed = participantSchema.safeParse(value);
-        if (!parsed.success) {
-            throw new HTTPException(400, { message: parsed.error.message });
-        }
-        return parsed.data;
+        return value;
     }),
     async (c) => {
         const participant = await c.req.json();
