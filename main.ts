@@ -7,7 +7,7 @@ export const kv = await Deno.openKv();
 
 const app = new Hono();
 
-app.use("/participants/", cors());
+app.use(cors());
 app.route("/participants/", participants);
 app.route("/event/", event);
 
