@@ -5,6 +5,8 @@ type Participant = {
     name: string;
     direction: string;
     age: number;
+    confirmed: boolean;
+    date: string;
 };
 export const getParticipants = async () => {
     const iter = kv.list<Participant>({ prefix: ["participants"] });
